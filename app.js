@@ -31,20 +31,7 @@ const questions = [
       answerFieldId: "answer_to_question"
     }
 ]
-    // {
-    //   questionType: "image_choice",
-    //   questionText: "Which is the correct logo for Swift?",
-    //   correctAnswer: "https://raw.githubusercontent.com/adonitakos/WebAppDev-course/master/CUS%201172%20-%20Module%202/CUS%201172%20-%20Project%203/questions/images/swift.png",
-    //   options: [
-    //       "https://raw.githubusercontent.com/adonitakos/WebAppDev-course/master/CUS%201172%20-%20Module%202/CUS%201172%20-%20Project%203/questions/images/java-logo.png",
-    //       "https://raw.githubusercontent.com/adonitakos/WebAppDev-course/master/CUS%201172%20-%20Module%202/CUS%201172%20-%20Project%203/questions/images/python-logo.png",
-    //       "https://raw.githubusercontent.com/adonitakos/WebAppDev-course/master/CUS%201172%20-%20Module%202/CUS%201172%20-%20Project%203/questions/images/swift.png",
-    //       "https://raw.githubusercontent.com/adonitakos/WebAppDev-course/master/CUS%201172%20-%20Module%202/CUS%201172%20-%20Project%203/questions/images/VisualStudio-logo.png"
-    //   ],
-    //   explanation: "A = Java, B = Python, and D = Visual Studio",
-    // }
-
-  // <--- questions[] Array ends here
+  
   
   // appState, keep information about the State of the application.
   const appState = {
@@ -63,11 +50,11 @@ const questions = [
       let api_endpoint_url = ''
 
       if (quizChoice == "techQuiz") {
-        api_endpoint_url = "C:\Users\maria\OneDrive\Desktop\project3\questions.json"
+        api_endpoint_url = "https://my-json-server.typicode.com/Mariatzi/questions1/db"
       }
 
       if (quizChoice = "codingQuiz") {
-        api_endpoint_url = "https://my-json-server.typicode.com/adonitakos/tech_questions/db"
+        api_endpoint_url = "https://my-json-server.typicode.com/Mariatzi/questions2/db"
       }
       
       const response = await fetch(url)
