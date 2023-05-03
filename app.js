@@ -16,14 +16,6 @@ const questions = [
       correctAnswer : "2",
       answerFieldId : "answer_to_question",
     },
-
-    {
-      questionType: "multiple_choice",
-      questionText: "What is Adoni's last name?",
-      correctAnswer: "Takos",
-      options: ["Papadopoulos", "Smith", "Takos", "Russo"],
-    },
-   
     {
       questionType: "multi-text-input",
       questionText: "What does FAANG stand for in Big Tech?",
@@ -39,6 +31,24 @@ const questions = [
       current_question : -1,
       current_model : {}
   } // <--- appState variable ends here
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set the state
+    appState.current_view =  "#intro_view";
+    appState.current_model = {
+      action : "start_app"
+    }
+    update_view(appState);
+  
+    //
+    // EventDelegation - handle all events of the widget
+    //
+  
+    document.querySelector("#widget_view").onclick = (e) => {
+        handle_widget_event(e)
+    }
+  }); // <--- EventListener() ends here
+
 
 // API request function
   async function fetch_question(questionId, quizChoice) {
@@ -76,22 +86,7 @@ const questions = [
   // start_app: begin the applications.
   //
   
-  document.addEventListener('DOMContentLoaded', () => {
-    // Set the state
-    appState.current_view =  "#intro_view";
-    appState.current_model = {
-      action : "start_app"
-    }
-    update_view(appState);
-  
-    //
-    // EventDelegation - handle all events of the widget
-    //
-  
-    document.querySelector("#widget_view").onclick = (e) => {
-        handle_widget_event(e)
-    }
-  }); // <--- EventListener() ends here
+
   
   
   function handle_widget_event(e) {
@@ -164,29 +159,9 @@ const questions = [
            update_view(appState);
            console.log("View was updated");
          } // <--- nested if() statement ends here
-       } // <--- if(#question_view_multiple_choice) statement ends here
+       } 
 
-      //  // // Handle answer event for image choice questions:
-      //  if (appState.current_view == "#question_view_image_choice") {
-  
-      //   if (e.target.dataset.action == "answer") {
-      //      // Controller - implement logic.
-      //      isCorrect = check_user_response(e.target.dataset.answer, appState.current_model);
-         
-      //      // Update the state.
-      //      updateQuestion(appState);
-      //      //appState.current_question = appState.current_question + 1;
-      //      //appState.current_model = questions[appState.current_question];
-           
-      //      setQuestionView(appState);
-         
-      //      // Update the view.  
-      //      update_view(appState);
-    
-      //    } // <--- nested if() statement ends here
-      //  } // <--- if(#question_view_image_choice) statement ends here
 
-      // Handle answer event for text questions.
      if (appState.current_view == "#question_view_multi_text_input") {
       if (e.target.dataset.action == "submit") {
     
@@ -247,9 +222,6 @@ const questions = [
     else if(appState.current_model.questionType == "multiple_choice") {
       appState.current_view = "#question_view_multiple_choice";
     }
-    // else if(appState.current_model.questionType == "image_choice") {
-    //   appState.current_view = "#question_view_image_choice";
-    // }
     else if(appState.current_model.questionType == "multi-text-input") {
       appState.current_view = "#question_view_multi_text_input";
     }
